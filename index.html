@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Политика конфиденциальности — Дневник: One Line a Day</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f0e4;
+        --card: #fffdf9;
+        --border: #ded1ba;
+        --text: #2c3030;
+        --muted: #626664;
+        --accent: #3a5f75;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #15181e;
+          --card: #1d212a;
+          --border: #2f3542;
+          --text: #f0ede8;
+          --muted: #a1a8b5;
+          --accent: #8fb4cc;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 32px 16px 56px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 32px 28px;
+      }
+      h1 {
+        margin: 0 0 6px;
+        font-size: 1.55rem;
+        line-height: 1.25;
+      }
+      .meta {
+        font-size: 0.875rem;
+        color: var(--muted);
+        margin-bottom: 22px;
+      }
+      h2 {
+        margin: 24px 0 8px;
+        font-size: 1.05rem;
+      }
+      p, li {
+        font-size: 0.95rem;
+      }
+      ul {
+        padding-left: 20px;
+        margin: 8px 0 16px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.86em;
+        padding: 1px 5px;
+        border-radius: 5px;
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+      }
+      a {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      hr {
+        border: 0;
+        border-top: 1px solid var(--border);
+        margin: 28px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Политика конфиденциальности</h1>
+      <div class="meta">
+        Приложение: <strong>«Дневник: One Line a Day»</strong> · Версия 2.5.0 · Дата вступления в силу: 25.11.2026
+      </div>
+
+      <p>
+        Приложение <strong>«Дневник: One Line a Day»</strong> построено по архитектуре
+        <em>Local-First</em> (100% автономное хранение на устройстве без доступа к сети интернет) и
+        гарантирует полную неприкосновенность ваших личных записей.
+      </p>
+
+      <h2>1. Отсутствие сбора и передачи данных</h2>
+      <p>
+        Все записи, имя владельца, оценки настроения и прикреплённые фотографии хранятся исключительно
+        во внутренней изолированной памяти вашего устройства (<code>IndexedDB</code> /
+        <code>localStorage</code>). Приложение не запрашивает разрешение на доступ в интернет
+        (<code>INTERNET</code>), не имеет удалённых серверов, не использует рекламные или
+        аналитические SDK, не отслеживает геолокацию и не передаёт данные третьим лицам.
+      </p>
+
+      <h2>2. Используемые системные возможности Android</h2>
+      <ul>
+        <li>
+          <strong>Системная камера и выбор фотографий (Android Photo Picker):</strong> при
+          прикреплении снимка к карточке дня приложение открывает стандартную системную камеру или
+          системный выбор фотографий (<code>Android Photo Picker</code>). Приложение получает доступ
+          только к одному выбранному вами кадру и никогда не запрашивает доступ ко всей медиатеке
+          устройства.
+        </li>
+        <li>
+          <strong>Биометрическая аутентификация (<code>USE_BIOMETRIC</code>):</strong> проверка
+          отпечатка пальца, Face ID или системного PIN-кода при входе в приложение, экспорте/импорте
+          резервной копии и удалении данных выполняется строго системным модулем ОС Android
+          (<code>BiometricPrompt</code>). Приложение никогда не получает доступ к биометрическим
+          данным или паролям устройства.
+        </li>
+        <li>
+          <strong>Локальные уведомления (<code>POST_NOTIFICATIONS</code>):</strong> разрешение
+          используется исключительно для вечерних напоминаний на самом устройстве без внешних
+          push-серверов и без использования точных будильников (<code>SCHEDULE_EXACT_ALARM</code>).
+        </li>
+      </ul>
+
+      <h2>3. Шифрование резервных копий и отправка открыток</h2>
+      <p>
+        Файлы резервных копий (<code>.json</code>) создаются только по вашей команде и автоматически
+        шифруются на устройстве алгоритмом <strong>AES-256-GCM</strong> с защитой пароля через
+        <strong>PBKDF2-SHA256</strong> (протокол <code>olad-encrypted-v2</code>). При нажатии кнопки
+        «Поделиться карточкой» изображение открытки генерируется локально на устройстве и передаётся
+        только в стандартное системное меню отправки Android (<code>Intent.ACTION_SEND</code>).
+      </p>
+
+      <h2>4. Хранение и безвозвратное удаление данных</h2>
+      <p>
+        Данные хранятся исключительно на вашем устройстве (автоматическое облачное резервирование ОС
+        отключено через <code>android:allowBackup="false"</code>). Вы можете в любой момент мгновенно
+        и безвозвратно удалить все записи, фотографии и настройки в разделе
+        <strong>«Настройки → Очистить дневник и удалить все данные»</strong> либо удалив приложение с
+        устройства.
+      </p>
+
+      <h2>5. Безопасность для всех возрастов</h2>
+      <p>
+        Приложение не содержит рекламы, трекеров и встроенных покупок и не собирает персональные
+        данные пользователей любого возраста, включая детей.
+      </p>
+
+      <h2>6. Контакты разработчика</h2>
+      <p>
+        По вопросам конфиденциальности и безопасности данных вы можете связаться с разработчиком по
+        электронной почте: <a href="mailto:klkvpvl.apps@gmail.com">klkvpvl.apps@gmail.com</a>.
+      </p>
+
+      <hr />
+
+      <h1>Privacy Policy (Summary)</h1>
+      <div class="meta">
+        App: <strong>Дневник: One Line a Day</strong> · Version 2.5.0 · Effective Date: November 25, 2026
+      </div>
+      <p>
+        <strong>Дневник: One Line a Day</strong> is a 100% offline, local-first personal micro-diary.
+        We do not collect, transmit, sell, or share any personal data. The app does not request
+        internet permission, includes no third-party analytics or advertising SDKs, and stores all
+        entries, moods, and photos exclusively on your device with <code>allowBackup="false"</code>.
+        Optional local backups are encrypted on-device with AES-256-GCM + PBKDF2-SHA256. Photo
+        attachment uses the system camera or Android Photo Picker (single-item access only). All data
+        can be permanently erased at any time in <em>Settings → Clear diary and delete all data</em>
+        or by uninstalling the app.
+      </p>
+      <p>
+        Contact: <a href="mailto:klkvpvl.apps@gmail.com">klkvpvl.apps@gmail.com</a>.
+      </p>
+    </main>
+  </body>
+</html>
